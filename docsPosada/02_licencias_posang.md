@@ -1,6 +1,6 @@
 # Página 2: Software libre y licencias
 
-## A · Software libre y licencias
+## Software libre y licencias
 
 **Comandos ejecutados para la exploración de licencias:**
 ```bash
