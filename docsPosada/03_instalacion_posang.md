@@ -1,4 +1,4 @@
-# Página 3: Instalación y Configuración Básica
+# Página 3: Preparación, Redes y Seguridad Básica
 
 ## FASE 1: Preparación y Creación de la Máquina Virtual
 

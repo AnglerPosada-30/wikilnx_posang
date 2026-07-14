@@ -1,4 +1,4 @@
-# Página 2: Software libre y licencias
+# Página 2: Análisis de Software Libre y Licencias
 
 ## Software libre y licencias
 

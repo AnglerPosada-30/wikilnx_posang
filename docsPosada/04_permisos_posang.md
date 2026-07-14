@@ -1,4 +1,4 @@
-#   C · Permisos por línea de comandos.
+#   C · Gestión Profunda de Archivos y Permisos (CLI)
 
 En esta sección del laboratorio trabajamos con la gestión de permisos y propietarios en nuestro Ubuntu Server. Como no tenemos interfaz gráfica, todo este control lo hacemos directamente por la terminal.
 
