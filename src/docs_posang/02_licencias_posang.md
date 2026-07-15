@@ -61,7 +61,7 @@ GNU Free Documentation License, utilizada legalmente para los manuales, wikis y 
 **Conclusión del comando 1:**
 Este directorio evidencia de forma práctica cómo Ubuntu gestiona legalmente su composición híbrida, manteniendo un repositorio estandarizado de todos los acuerdos de distribución bajo los que opera el sistema.
 
-![Ejecución del comando ls /usr/share/common-licenses/](../img/img_licencias/ls.png)
+![Ejecución del comando ls /usr/share/common-licenses/](/img/img_licencias/ls.png)
 
 
 
@@ -79,7 +79,7 @@ El comando `less` funciona como un paginador de terminal. A diferencia de otras 
 
 Al ejecutarlo sobre el archivo `GPL-3`, el sistema muestra el texto legal completo de la *GNU General Public License Version 3*. A nivel de administración de servidores, esta herramienta es fundamental porque permite auditar los términos legales (el copyleft) y los derechos de distribución del software instalado directamente desde la consola, sin depender de un entorno gráfico o de un navegador web externo.
 
-![Ejecución del comando less /usr/share/common-licenses/GPL-3](../img/img_licencias/less.png)
+![Ejecución del comando less /usr/share/common-licenses/GPL-3](/img/img_licencias/less.png)
 
 
 3. **Revisión de los derechos de autor de Bash**
@@ -99,7 +99,7 @@ Lo interesante es que este archivo no contiene todo el documento legal enorme. E
 
 Esto nos demuestra de forma sencilla cómo se organiza Linux: para no tener el mismo texto legal repetido miles de veces (uno por cada programa instalado), guarda una sola copia general en el sistema y hace que los demás archivos simplemente hagan referencia a ella para ser más ordenados y ahorrar espacio.
 
-![Ejecución del comendo cat /usr/share/doc/bash/copyright](../img/img_licencias/cat.png)
+![Ejecución del comendo cat /usr/share/doc/bash/copyright](/img/img_licencias/cat.png)
 
 ### 1. ¿Qué es el software libre?
 El software libre (Free Software) es aquel que respeta la libertad de los usuarios y la comunidad. No se refiere a la gratuidad (precio), sino a la libertad de uso. Según la Free Software Foundation (FSF), para que un programa sea considerado libre, debe garantizar cuatro libertades fundamentales:

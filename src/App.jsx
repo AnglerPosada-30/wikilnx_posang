@@ -1,40 +1,56 @@
 import { useState } from 'react'
 import { Book, Shield, Terminal, Key, Package, Globe, Bot } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+
+// Importamos tus archivos Markdown directamente (el sufijo ?raw es esencial en Vite)
+// Asegúrate de que los nombres coincidan exactamente con los de tus archivos reales
+import inicioMd from '../src/docs_posang/01_inicio_posang.md?raw'
+import licenciasMd from '../src/docs_posang/02_licencias_posang.md?raw'
+import instalacionMd from '../src/docs_posang/03_instalacion_posang.md?raw'
+import permisosMd from './docs_posang/04_permisos_posang.md?raw'
+import paquetesMd from './docs_posang/05_paquetes_posang.md?raw'
+import nginxMd from './docs_posang/06_nginx_posang.md?raw'
 
 function App() {
-  // Estado para controlar qué sección se está viendo
   const [seccionActiva, setSeccionActiva] = useState('inicio')
 
-  // Nuestro menú de navegación
+  // Mapeamos cada sección con su archivo Markdown correspondiente
   const menu = [
-    { id: 'inicio', titulo: 'Inicio', icono: <Book size={20} /> },
-    { id: 'licencias', titulo: 'Licencias', icono: <Shield size={20} /> },
-    { id: 'instalacion', titulo: 'Instalación', icono: <Terminal size={20} /> },
-    { id: 'permisos', titulo: 'Permisos', icono: <Key size={20} /> },
-    { id: 'paquetes', titulo: 'Gestor de Paquetes', icono: <Package size={20} /> },
-    { id: 'nginx', titulo: 'Nginx y Despliegue', icono: <Globe size={20} /> },
-    { id: 'prompts', titulo: 'Bitácora IA', icono: <Bot size={20} /> },
+    { id: 'inicio', titulo: 'Inicio y Visión', icono: <Book size={20} />, contenido: inicioMd },
+    { id: 'licencias', titulo: 'Licencias', icono: <Shield size={20} />, contenido: licenciasMd },
+    { id: 'instalacion', titulo: 'Instalación', icono: <Terminal size={20} />, contenido: instalacionMd },
+    { id: 'permisos', titulo: 'Permisos', icono: <Key size={20} />, contenido: permisosMd },
+    { id: 'paquetes', titulo: 'Gestor de Paquetes', icono: <Package size={20} />, contenido: paquetesMd },
+    { id: 'nginx', titulo: 'Nginx y Despliegue', icono: <Globe size={20} />, contenido: nginxMd },
+    // La sección de Prompts la dejaremos lista con un texto provisional hasta que la termines
+    { id: 'prompts', titulo: 'Bitácora IA', icono: <Bot size={20} />, contenido: '### Bitácora de Prompts \n *El archivo de evidencia de IA se cargará aquí próximamente.*' },
   ]
 
+  // Buscamos el contenido del archivo que está seleccionado actualmente
+  const seccionActual = menu.find(m => m.id === seccionActiva)
+
   return (
-    <div className="flex h-screen bg-gray-50 font-sans">
-      {/* Barra Lateral (Sidebar) */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col shadow-xl z-10">
+    <div className="flex h-screen bg-slate-50 font-sans">
+      
+      {/* --- MENÚ LATERAL --- */}
+      <aside className="w-72 bg-slate-900 text-white flex flex-col shadow-2xl z-10">
         <div className="p-6 border-b border-slate-800">
-          <h1 className="text-xl font-bold text-blue-400">Wiki Linux Server</h1>
+          <h1 className="text-2xl font-bold text-blue-400">Wiki Linux</h1>
           <p className="text-slate-400 text-sm mt-1">Sistemas Operativos (TI3V35)</p>
-          <p className="text-slate-500 text-xs mt-1">Cód: wikilnx_posang</p>
+          <div className="mt-4 inline-block bg-slate-800 px-3 py-1 rounded text-xs text-blue-300 font-mono">
+            ID: wikilnx_posang
+          </div>
         </div>
         
-        <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+        <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
           {menu.map((item) => (
             <button
               key={item.id}
               onClick={() => setSeccionActiva(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+              className={`w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all duration-200 ${
                 seccionActiva === item.id 
-                  ? 'bg-blue-600 text-white shadow-md' 
-                  : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/50' 
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
               }`}
             >
               {item.icono}
@@ -44,17 +60,32 @@ function App() {
         </nav>
       </aside>
 
-      {/* Área de Contenido Principal */}
+      {/* --- PANEL PRINCIPAL (VISOR MARKDOWN) --- */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-5xl mx-auto p-10">
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 min-h-[80vh]">
-            <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">
-              {menu.find(m => m.id === seccionActiva)?.titulo}
-            </h2>
+        <div className="max-w-4xl mx-auto py-12 px-8">
+          <div className="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 min-h-[85vh]">
             
-            <div className="text-slate-600">
-              <p>El componente para la sección <strong>{seccionActiva}</strong> se renderizará aquí.</p>
-            </div>
+            {/* Renderizador Mágico de Markdown con clases de Tailwind */}
+            <ReactMarkdown
+              components={{
+                h1: ({node, ...props}) => <h1 className="text-4xl font-extrabold mt-2 mb-6 text-slate-800 border-b pb-4" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-10 mb-4 text-blue-700" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-6 mb-3 text-slate-700" {...props} />,
+                p: ({node, ...props}) => <p className="mb-5 text-slate-600 leading-relaxed" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 text-slate-600 space-y-2" {...props} />,
+                li: ({node, ...props}) => <li className="pl-1" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-semibold text-slate-800" {...props} />,
+                img: ({node, ...props}) => <img className="rounded-xl shadow-md my-8 mx-auto border border-slate-200" alt={props.alt} {...props} />,
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blue-500 pl-4 py-1 italic text-slate-500 my-6 bg-blue-50/50 rounded-r-lg" {...props} />,
+                code: ({node, inline, ...props}) =>
+                  inline
+                    ? <code className="bg-slate-100 text-pink-600 px-1.5 py-0.5 rounded-md text-sm font-mono border border-slate-200" {...props} />
+                    : <div className="rounded-xl overflow-hidden my-6 border border-slate-800 shadow-lg"><div className="bg-slate-800 text-slate-400 px-4 py-2 text-xs border-b border-slate-700 flex justify-between"><span>Terminal / Código</span></div><code className="block bg-slate-900 text-green-400 p-5 overflow-x-auto text-sm font-mono leading-relaxed" {...props} /></div>
+              }}
+            >
+              {seccionActual.contenido}
+            </ReactMarkdown>
+
           </div>
         </div>
       </main>
