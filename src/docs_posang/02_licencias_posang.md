@@ -9,13 +9,14 @@ less /usr/share/common-licenses/GPL-3
 cat /usr/share/doc/bash/copyright
 ```
 
-Resultado de la exploración de la ejecución de los comandos proporcionados, mediante la PowerShell conectada al servidor `srv-wiki`.
+Resultado de la exploración de la ejecución de los comandos proporcionados, mediante la PowerShell conectada al servidor *srv-wiki*.
 
 1. **Directorio de Licencias**
 
 **Ejecución del comando:**
     ```bash
     ls /usr/share/common-licenses/
+    ```
 
 Me dio la siguiente respuesta: 
 
@@ -40,7 +41,7 @@ Me dio la siguiente respuesta:
 | MPL-2.0 |
 
 **Análisis del Resultado:**
-El comando `ls` (listar) nos mostró el contenido del directorio `/usr/share/common-licenses/`. Lo que estamos viendo es un listado de archivos de texto sin extensión, donde cada uno contiene los términos legales completos de las licencias de software libre y código abierto más reconocidas en la industria.
+El comando `ls` (listar) nos mostró el contenido del directorio `/usr/share/common-licenses/` Lo que estamos viendo es un listado de archivos de texto sin extensión, donde cada uno contiene los términos legales completos de las licencias de software libre y código abierto más reconocidas en la industria.
     
 **Fundamento técnico de este directorio**
 
@@ -49,13 +50,13 @@ Un sistema operativo como Ubuntu Server está compuesto por miles de paquetes y 
 
 * **Clasificación de las licencias observadas:**
 
-- **Familia GPL y LGPL(`GPL-2`, `GPL-3`, `LGPL`):**
+- **Familia GPL y LGPL** `GPL-2, GPL-3, LGPL`
 Archivos correspondientes a las licencias Copyleft de la Fundación del Software Libre, que protegen la apertura del código fuente de las herramientas principales del sistema.
 
-- **Licencias Permisivas (`Apache-2.0`, `BSD`):**
+- **Licencias Permisivas** `Apache-2.0, BSD`
 Archivos para el software que permite su uso y modificación sin obligar a heredar la licencia en trabajos derivados.
 
-- **Documentación Libre (`GFDL`):**
+- **Documentación Libre** `GFDL`
 GNU Free Documentation License, utilizada legalmente para los manuales, wikis y archivos de ayuda del sistema.
 
 **Conclusión del comando 1:**
@@ -70,14 +71,15 @@ Este directorio evidencia de forma práctica cómo Ubuntu gestiona legalmente su
 **Ejecución del comando:**
     ```bash
     less /usr/share/common-licenses/GPL-3
+    ```
 
-*nota: Se utilizó la tecla `q` para salir del modo de visualización y retornar al prompt*
+*nota: Se utilizó la tecla "q" para salir del modo de visualización y retornar al prompt*
 
 **Análisis y fundamento técnico:**
 
 El comando `less` funciona como un paginador de terminal. A diferencia de otras utilidades que imprimen el contenido de un archivo de golpe saturando la pantalla, less carga el documento y permite navegar por él de forma interactiva (arriba/abajo) ocupando poca memoria.
 
-Al ejecutarlo sobre el archivo `GPL-3`, el sistema muestra el texto legal completo de la *GNU General Public License Version 3*. A nivel de administración de servidores, esta herramienta es fundamental porque permite auditar los términos legales (el copyleft) y los derechos de distribución del software instalado directamente desde la consola, sin depender de un entorno gráfico o de un navegador web externo.
+Al ejecutarlo sobre el archivo `GPL-3` el sistema muestra el texto legal completo de la *GNU General Public License Version 3*. A nivel de administración de servidores, esta herramienta es fundamental porque permite auditar los términos legales (el copyleft) y los derechos de distribución del software instalado directamente desde la consola, sin depender de un entorno gráfico o de un navegador web externo.
 
 ![Ejecución del comando less /usr/share/common-licenses/GPL-3](/img/img_licencias/less.png)
 
@@ -87,11 +89,12 @@ Al ejecutarlo sobre el archivo `GPL-3`, el sistema muestra el texto legal comple
 **Ejecución del comando:**
     ```bash
     cat /usr/share/doc/bash/copyright
+    ```
 
 **Análisis y fundamento técnico:**
 El comando `cat` (concatenar) lee el contenido de un archivo y lo vuelca íntegramente en la salida estándar (la consola).
 
-Al inspeccionar el archivo `/usr/share/doc/bash/copyright`, estamos auditando cómo el sistema operativo documenta la propiedad intelectual de un paquete individual en específico; en este caso, `bash` (el intérprete de comandos por defecto)
+Al inspeccionar el archivo `/usr/share/doc/bash/copyright` estamos auditando cómo el sistema operativo documenta la propiedad intelectual de un paquete individual en específico; en este caso, *bash* (el intérprete de comandos por defecto)
 
 Al ejecutar el comando, el texto en pantalla nos muestra quién es el autor del programa Bash (generalmente la Free Software Foundation) y bajo qué licencia se distribuye.
 

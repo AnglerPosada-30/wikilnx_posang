@@ -1,4 +1,4 @@
-# Portada y Visión General del Proyecto
+# Página 1 · Portada y Visión General del Proyecto
 
 **Asignatura:** Sistemas Operativos (T13V35)
 **Docente:** Rubén Schnettler Lucero
@@ -24,7 +24,7 @@ Para aislar el entorno de trabajo y mantener el control, utilicé una única má
 * **Enrutamiento y Reglas de Conexión:**
   * **Red NAT:** La máquina virtual está configurada con un adaptador de red NAT, lo que le permite tener salida a internet de forma segura para descargar actualizaciones y paquetes mediante `apt`.
   * **Reenvío de Puertos (Port Forwarding):** Para poder interactuar con el servidor desde mi máquina anfitriona sin usar una segunda computadora, configuré dos túneles directos en VirtualBox:
-    * El puerto **2222** de mi PC redirige al puerto **22** del servidor, habilitando la administración remota segura a través de SSH (`ssh -p 2222 inacap@localhost`).
+    * El puerto **2222** de mi PC redirige al puerto **22** del servidor, habilitando la administración remota segura a través de SSH. `ssh -p 2222 inacap@localhost`
     * El puerto **8080** de mi PC redirige al puerto **80** del servidor, permitiendo que mi navegador local consuma el sitio web que Nginx está sirviendo.
 
 ---
@@ -38,23 +38,23 @@ Antes de tocar la configuración del servidor, realicé una revisión de los tip
 
 ### Fase B: Preparación, Redes y Seguridad Básica
 En esta etapa, le di identidad y seguridad a la máquina.
-* Configuré el nombre del equipo (`hostnamectl`) para identificarlo en la red como `srv-wiki`.
-* Revisé la asignación de direcciones IP (`ip a`).
-* Actualicé la lista de repositorios y los paquetes del sistema (`apt update && apt upgrade`) para parchar vulnerabilidades.
+* Configuré el nombre del equipo `hostnamectl` para identificarlo en la red como `srv-wiki`.
+* Revisé la asignación de direcciones IP `ip a`.
+* Actualicé la lista de repositorios y los paquetes del sistema `apt update && apt upgrade` para parchar vulnerabilidades.
 * **Hardenización:** Activé y configuré el firewall UFW, bloqueando todo el tráfico entrante por defecto y abriendo explícitamente solo los servicios necesarios (el puerto 22 para SSH y el puerto 80 para el tráfico web).
 
 ### Fase C: Gestión Profunda de Archivos y Permisos (CLI)
-Aquí trabajé en el control de acceso a la información. Utilizando comandos como `ls -l`, `chmod` y `chown`, aseguré directorios personales para restringir la lectura y escritura. Además, preparé un entorno colaborativo configurando permisos especiales: activé el `setgid` para que los archivos hereden el grupo en carpetas compartidas, y el `sticky bit` para proteger los archivos temporales de borrados accidentales por otros usuarios.
+Aquí trabajé en el control de acceso a la información. Utilizando comandos como `ls -l, chmod y chown`, aseguré directorios personales para restringir la lectura y escritura. Además, preparé un entorno colaborativo configurando permisos especiales: activé el *setgid* para que los archivos hereden el grupo en carpetas compartidas, y el *sticky bit* para proteger los archivos temporales de borrados accidentales por otros usuarios.
 
 ### Fase D: Gestión de Paquetes y Evaluación de Alternativas
-Utilicé la herramienta `apt` (Advanced Package Tool) para buscar, analizar e instalar software. En lugar de instalar a ciegas, apliqué criterios de factibilidad, analizando el peso, el soporte y las dependencias de los paquetes (como herramientas de monitoreo del sistema) antes de integrarlos al servidor.
+Utilicé la herramienta *apt* (Advanced Package Tool) para buscar, analizar e instalar software. En lugar de instalar a ciegas, apliqué criterios de factibilidad, analizando el peso, el soporte y las dependencias de los paquetes (como herramientas de monitoreo del sistema) antes de integrarlos al servidor.
 
 ### Fase E: Despliegue de Servicios y Servidor Web (Nginx)
 La etapa final e integradora del proyecto.
 1. Instalé **Nginx** como servidor web principal.
 2. Preparé el entorno instalando **Node.js** y **Git** para poder clonar mi repositorio.
 3. Compilé esta aplicación React directamente en el servidor.
-4. Configuré Nginx, asignándole los permisos correctos al usuario `www-data`, para que tomara los archivos compilados y los publicara hacia el exterior de forma estable.
+4. Configuré Nginx, asignándole los permisos correctos al usuario `www-data` para que tomara los archivos compilados y los publicara hacia el exterior de forma estable.
 
 ---
 

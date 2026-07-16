@@ -157,7 +157,11 @@ Esta es la "receta" del sitio. Le dice a Nginx: "Escucha en el puerto 80, tu dir
 
 ## 5. Activación y Recarga de Nginx
 
-Para que la configuración anterior surtiera efecto, tuve que activarla creando un enlace simbólico, borrando el sitio por defecto que trae Nginx, probando la sintaxis y recargando el servicio.
+Después de crear el archivo de configuración de mi sitio, necesitaba activar ese sitio dentro de Nginx y deshabilitar la configuración por defecto. Para eso, primero generé un enlace simbólico desde sites-available hacia sites-enabled usando sudo ln -s. Este paso es importante porque Nginx solo toma en cuenta los sitios que están dentro de la carpeta sites-enabled.
+
+Luego eliminé el archivo default que viene activado por defecto, ya que no lo necesitaba y podía interferir con mi nueva configuración. Después ejecuté sudo nginx -t para validar que la configuración no tuviera errores; este comando revisa la sintaxis y confirma si todo está correcto antes de recargar el servicio.
+
+Finalmente, recargué Nginx con sudo systemctl reload nginx para aplicar los cambios sin detener el servidor. Con esto, mi sitio quedó oficialmente habilitado y listo para ser servido.
 
 * **comandos ejecutados:**
      ```bash
@@ -167,7 +171,7 @@ Para que la configuración anterior surtiera efecto, tuve que activarla creando 
      sudo systemctl reload nginx
      ```
 
-El comando `nginx -t` es una excelente herramienta que prueba el archivo de configuración en busca de errores de tipeo (como un punto y coma faltante) antes de reiniciar el servicio, evitando que el servidor web se caiga por un error humano.
+*El comando `nginx -t` es una excelente herramienta que prueba el archivo de configuración en busca de errores de tipeo (como un punto y coma faltante) antes de reiniciar el servicio, evitando que el servidor web se caiga por un error humano.*
 
 ![Comando necesarios para cagar la wiki al puerto 8080](/img/img_nginx/sitioDesplegado.png)
 
@@ -178,7 +182,7 @@ El comando `nginx -t` es una excelente herramienta que prueba el archivo de conf
 
 Finalmente, abrí el navegador web en mi computadora anfitriona (fuera de la máquina virtual) e ingresé a `http://localhost:8080`. Gracias al reenvío de puertos (Port Forwarding) que configuré en VirtualBox, mi petición entró por el puerto 8080 de mi PC, viajó al puerto 80 del servidor Linux, y Nginx me respondió entregando la wiki perfectamente renderizada. 
 
-Con esto, demostré la capacidad de desplegar un sitio web desde cero operando un servidor Linux por CLI.
+Con esta prueba demostré que soy capaz de desplegar un sitio web desde cero utilizando únicamente la línea de comandos en un servidor Linux, dejando operativo un entorno completo de publicación web.
 
 > **Mi Evidencia:**
-> `![Sitio web sirviendo desde localhost:8080](img_tucodigo/06_sitio_en_linux.png)`
+![Sitio web sirviendo desde localhost:8080](/img/img_nginx/puerto80.png)
