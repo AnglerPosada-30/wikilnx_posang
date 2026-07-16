@@ -9,6 +9,7 @@ import permisosMd from './docs_posang/04_permisos_posang.md?raw'
 import paquetesMd from './docs_posang/05_paquetes_posang.md?raw'
 import nginxMd from './docs_posang/06_nginx_posang.md?raw'
 import promptsMd from './docs_posang/07_prompts_posang.md?raw'
+import desafioMd from './docs_posang/08_desafio_posang.md?raw'
 
 function App() {
   const [seccionActiva, setSeccionActiva] = useState('inicio')
@@ -23,6 +24,7 @@ function App() {
     { id: 'paquetes', titulo: 'Gestor de Paquetes', icono: <Package size={20} />, contenido: paquetesMd },
     { id: 'nginx', titulo: 'Nginx y Despliegue', icono: <Globe size={20} />, contenido: nginxMd },
     { id: 'prompts', titulo: 'Bitácora IA', icono: <Bot size={20} />, contenido: promptsMd },
+    { id: 'desafio', titulo: 'Desafío Extra', icono: <Globe size={20} />, contenido: desafioMd },
   ]
 
   const seccionActual = menu.find(m => m.id === seccionActiva)

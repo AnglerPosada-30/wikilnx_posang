@@ -1,4 +1,4 @@
-# Página 6: Despliegue de Servicios y Servidor Web (Nginx)
+# Página 6 · Despliegue de Servicios y Servidor Web (Nginx)
 
 Llegamos a la etapa final y más importante del laboratorio. El objetivo aquí es transformar nuestra máquina virtual en un servidor web real, utilizando Nginx, para alojar y servir esta misma wiki hacia el exterior. 
 
@@ -118,7 +118,7 @@ Nginx necesita saber de dónde leer los archivos, y por convención, los sitios 
 
 Lo que hice fue preparar el directorio donde se va a publicar la versión final del sitio y luego copiar los archivos generados por la compilación. Primero, creé la carpeta (/var/www/wiki) usando (sudo mkdir -p), asegurándome de que existiera incluso si faltaban directorios intermedios. Después copié todo el contenido de la carpeta dist hacia esa ubicación, que es donde normalmente se alojan los archivos que servirán al sitio en producción. Finalmente, cambié la propiedad de la carpeta y de todos sus archivos para que el usuario y grupo www-data —que es el que usa el servidor web— tenga control total sobre ellos. Con eso dejé el sitio listo para ser servido por el servidor.
 
-**¿Por qué `chown www-data`?:** Este es un paso crítico de seguridad. `www-data` es el usuario de sistema que Nginx utiliza para ejecutarse. Al transferirle la propiedad de la carpeta `/var/www/wiki/`, le doy a Nginx el permiso exclusivo para leer y servir mis archivos hacia internet, evitando usar al usuario administrador para tareas web.
+**¿Por qué chown www-data?:** Este es un paso crítico de seguridad `www-data` es el usuario de sistema que Nginx utiliza para ejecutarse. Al transferirle la propiedad de la carpeta `/var/www/wiki/` le doy a Nginx el permiso exclusivo para leer y servir mis archivos hacia internet, evitando usar al usuario administrador para tareas web.
 
 ![Creación de la carpeta /var/www/wiki](/img/img_nginx/preparacionDirectorio.png)
 
@@ -131,9 +131,9 @@ Lo que hice fue preparar el directorio donde se va a publicar la versión final 
 Luego, tuve que darle a Nginx las instrucciones exactas sobre cómo manejar mi sitio creando su archivo de configuración.
 
 * **comando ejecutado:**
-     ```bash
-     sudo nano /etc/nginx/sites-available/wiki
-     ```
+      ```bash
+      sudo nano /etc/nginx/sites-available/wiki
+      ```
 
 Para que Nginx pudiera servir correctamente mi sitio, necesitaba crear su archivo de configuración específico. Para eso abrí un nuevo archivo dentro de la ruta estándar de sitios disponibles usando el comando anterior mencionado. Este archivo es donde definí las reglas que Nginx debe seguir: la ubicación de los archivos del sitio, el comportamiento del servidor, y cualquier ajuste necesario para que la WIKI funcione en producción. Al abrirlo con nano, pude escribir manualmente toda la configuración que permitirá que Nginx reconozca y publique mi proyecto.
 
